@@ -18,8 +18,13 @@ function Watchlist() {
     const movieFavourites = JSON.parse(
       localStorage.getItem("movie-app-favourites")
     );
-    setFavourites(movieFavourites);
-    setWatchList(movieWatchList);
+
+    if (movieFavourites !== null) {
+      setFavourites(movieFavourites);
+    }
+    if (watchList !== null) {
+      setWatchList(movieWatchList);
+    }
   }, []);
 
   const saveToLocalStorage = (items, type) => {
@@ -53,7 +58,7 @@ function Watchlist() {
       saveToLocalStorage(newWatchList, "watchlist");
     }
   };
-  
+
   return (
     <div className="App">
       <Navbar />
@@ -63,9 +68,9 @@ function Watchlist() {
 
       <div className="movie-grid">
         <MovieList
-          watchlist={watchList}
-          favourites={favourites}
-          movies={watchList}
+          watchlist={watchList || {}}
+          favourites={favourites || {}}
+          movies={watchList || {}}
           handleFavourites={handleFavourites}
           handleWatchList={handleWatchList}
           message="Nothing on your Watch List (yet)"

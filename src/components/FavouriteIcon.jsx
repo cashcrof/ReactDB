@@ -4,10 +4,14 @@ import emptyIcon from "../assets/empty-heart.svg";
 import { useEffect } from "react";
 
 const FavouriteIcon = (props) => {
-  let favsIds = props.favourites.map((fav, index) => {
-    return fav.id;
-  });
-
+  let favsIds;
+  try {
+    favsIds = props.favourites.map((fav, index) => {
+      return fav.id;
+    });
+  } catch {
+    favsIds = [];
+  }
   const icon = favsIds.includes(props.movieId) ? (
     <>
       <img src={heartIcon} />

@@ -19,8 +19,13 @@ function Favourites() {
     const movieFavourites = JSON.parse(
       localStorage.getItem("movie-app-favourites")
     );
-    setFavourites(movieFavourites);
-    setWatchList(movieWatchList);
+
+    if (movieFavourites !== null) {
+      setFavourites(movieFavourites);
+    }
+    if (watchList !== null) {
+      setWatchList(movieWatchList);
+    }
   }, []);
 
   const saveToLocalStorage = (items, type) => {
@@ -64,9 +69,9 @@ function Favourites() {
 
       <div className="movie-grid">
         <MovieList
-          movies={favourites}
-          favourites={favourites}
-          watchlist={watchList}
+          movies={favourites || {}}
+          favourites={favourites || {}}
+          watchlist={watchList || {}}
           handleFavourites={handleFavourites}
           handleWatchList={handleWatchList}
           message="Hard to please? No favourites yet."

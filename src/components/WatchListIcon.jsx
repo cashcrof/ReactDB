@@ -3,9 +3,14 @@ import plusIcon from "../assets/plus.svg";
 import minusIcon from "../assets/minus.svg";
 
 const WatchListIcon = (props) => {
-  let watchlistIds = props.watchlist.map((item, index) => {
-    return item.id;
-  });
+  let watchlistIds;
+  try {
+    watchlistIds = props.watchlist.map((item, index) => {
+      return item.id;
+    });
+  } catch {
+    watchlistIds = [];
+  }
 
   const icon = watchlistIds.includes(props.movieId) ? (
     <>
