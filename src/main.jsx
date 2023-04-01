@@ -8,11 +8,20 @@ import Watchlist from "./routes/Watchlist";
 import Favourites from "./routes/Favourites";
 import About from "./routes/About";
 import { useEffect } from "react";
+import { useRouteError } from "react-router-dom";
+
+function ErrorBoundary() {
+  let error = useRouteError();
+  console.error(error);
+  // Uncaught ReferenceError: path is not defined
+  return <div>Dang!</div>;
+}
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "*",
     element: <AppRouter />,
+    errorElement: <ErrorBoundary />
   },
   {
     path: "favourites",
